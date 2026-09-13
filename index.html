@@ -39,6 +39,36 @@ footer strong{display:block;color:var(--gold2);font-family:Georgia,serif;font-st
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.panel:last-child .services{grid-template-columns:1fr}}
 @media(max-width:620px){.container{width:min(100% - 18px,1180px)}header{padding-top:9px}.hero{padding:30px 5px 20px}.grid{grid-template-columns:1fr;gap:12px}.panel{padding:15px}.panel:last-child{grid-column:auto}.service{padding:14px 12px}}
 </style>
+
+<!-- ===== ALLROLDAO - PROTEÇÃO BÁSICA POR SENHA ===== -->
+<script>
+(function() {
+  var CHAVE = "allroldao_acesso_liberado";
+  var SENHA = "Ad051205";
+  if (sessionStorage.getItem(CHAVE) === "sim") return;
+
+  var ok = false;
+  for (var tentativa = 0; tentativa < 3; tentativa++) {
+    var digitada = prompt("ALLROLDAO - Acesso restrito\n\nDigite a senha:");
+    if (digitada === SENHA) {
+      sessionStorage.setItem(CHAVE, "sim");
+      ok = true;
+      break;
+    }
+    if (digitada === null) break;
+    alert("Senha incorreta.");
+  }
+
+  if (!ok) {
+    document.open();
+    document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ALLROLDAO - Acesso restrito</title></head><body style="margin:0;background:#050708;color:#f4f5f5;font-family:Segoe UI,Arial,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center"><div style="border:1px solid #80611c;background:#0d1113;padding:34px;border-radius:16px;max-width:440px"><div style="font-size:28px;color:#ffd76b;font-weight:800;margin-bottom:12px">ALLROLDAO</div><div style="font-size:18px;font-weight:700;margin-bottom:8px">Acesso restrito</div><div style="color:#c2c8ca">Senha não informada ou incorreta.</div><button onclick="location.reload()" style="margin-top:22px;padding:10px 18px;border-radius:9px;border:1px solid #ffe39a;background:#e5b43a;color:#111;font-weight:800;cursor:pointer">Tentar novamente</button></div></body></html>');
+    document.close();
+    throw new Error("Acesso bloqueado");
+  }
+})();
+</script>
+<!-- ===== FIM DA PROTEÇÃO BÁSICA ===== -->
+
 </head>
 <body>
 <div class="container">
